@@ -6,7 +6,7 @@ So, for that, we are building a web application that will be based on the health
 Life insurance will help provide financially for your survivors. Health insurance protects you from catastrophic bills in case of a serious accident or illness. 
 
 ## Technologies Incorporated in this project : 
-### Django 
+### Django Project
 #### Frontend : Html,CSS, JavaScript
 #### Backend  : postgresql(pgAdmin4), Mysql, dbsqlite3.
  we have tried above all the above database types but finally we deployed website using mysql concept.
