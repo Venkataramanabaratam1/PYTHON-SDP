@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% block body %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Contact Us Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" >
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lexend+Peta&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.contact{
+    position: relative;
+    min-height: 100vh;
+    padding: 50px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: url('https://i.pinimg.com/736x/08/f1/99/08f199d12219db05136cde8b7f54ad3e.jpg');
+    background-size: cover;
+}
+.contact .content{
+    max-width: 800px;
+    text-align: center;
+}
+.contact .content h2{
+    font-size: 36px;
+    font-weight: 500;
+    color: #ff0000;
+    margin-bottom: 20px;
+}
+.contact .content p{
+    font-weight: 300;
+    color: #ffff;
+}
+.container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+.container .contactInfo{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+.container .contactInfo .box{
+    position: relative;
+    padding: 20px 0;
+    display: flex;
+}
+.container .contactInfo .box .icon{
+    min-width: 60px;
+    height: 60px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 22px;
+}
+.container .contactInfo .box .text h3{
+    display: flex;
+    margin-left: 20px;
+    font-size: 16px;
+    color: rgb(217, 255, 0);
+    /* flex-direction: column; */
+    font-weight: 500;
+}
+.container .contactInfo .box .text p{
+    display: flex;
+    margin-left: 20px;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    /* flex-direction: column; */
+    font-weight: 300;
+}
+.contactForm{
+    width: 40%;
+    padding: 40px;
+    background: #fff;
+
+}
+.contactForm h2{
+    font-size: 30px;
+    color: #333;
+    font-weight: 500;
+}
+.contactForm .inputBox{
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+}
+.contactForm .inputBox input,
+.contactForm .inputBox textarea{
+    width: 100%;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    border: none;
+    border-bottom: 2px solid #333;
+    outline: none;
+    resize: none;
+}
+.contactForm .inputBox span{
+    position: absolute;
+    left: 0;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    pointer-events: none;
+    transition: 0.5s;
+    color: #666;
+}
+.contactForm .inputBox input:focus ~ span,
+.contactForm .inputBox input:valid ~ span,
+.contactForm .inputBox textarea:focus ~ span,
+.contactForm .inputBox textarea:valid ~ span{
+    color: #ff0000;
+    font-size: 12px;
+    transform: translateY(-20px);
+}
+.contactForm .inputBox input[type="submit"]{
+    width: 100px;
+    background: #00bcd4;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 18px;
+}
+    </style>
+</head>
+<body>
+    <section class="contact">
+        <div class="content">
+            {% csrf_token %}
+  <form action = "{% url 'contactus1' %}" method="post">
+  {% csrf_token %}
+            <h2>Contact Us</h2>
+            <p>You can ask any kind of doubt(s) through this...</p>
+        </div>
+        <div class="container">
+            <div class="contactInfo">
+                <div class="box">
+                    <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                    <div class="text">
+                        <h3>Address</h3>
+                        <p>Vaddeswaram Road,<br>Guntur,India,<br>522001</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon"><i class="fa fa-phone" aria-hidden="true"></i></div>
+                    <div class="text">
+                        <h3>Phone</h3>
+                        <p>6304345373,9347835425</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon"><i class="fa fa-envelope" aria-hidden="true"></i></i></div>
+                    <div class="text">
+                        <h3>Email</h3>
+                        <p>bvenkataramana2852@gmail.com</p>
+                        <p>gvachaspathignaneswar@gmail.com</p>
+                        <p>krohithvenkatsai@gmail.com</p>
+                    </div>
+                </div>
+                <div>
+                <div ><p style="color:red;font-size:24">CHAT WITH US</p></div>
+                    <div class="box">
+                    <div class="icon"><i class="fab fa-whatsapp"></i></div>
+                    <div class="text">
+                        <h3>Whatsapp</h3>
+                        <p><a href="https://wa.me/+916304345373" target="_blank"> Chat through Whatsapp</a></p>
+                    </div>
+                </div>
+                    <div class="box">
+                    <div class="icon"><i class="fab fa-telegram"></i></div>
+                    <div class="text">
+                        <h3>Telegram</h3>
+                        <p><a href="https://t.me/venky2852" target="_blank"> Chat through Telegram</a></p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="contactForm">
+                <form>
+                    <h2>Send Message</h2>
+                    <div class="inputBox">
+                        <input type="text" required="required" id="firstname" name="firstname">
+                        <span>First Name</span>
+                    </div>
+                    <div class="inputBox">
+                        <input type="text" required="required" id="lastname" name="lastname">
+                        <span>Last Name</span>
+                    </div>
+                    <div class="inputBox">
+                        <input type="text" required="required" id="email" name="email">
+                        <span>Email</span>
+                    </div>
+                    <div class="inputBox">
+                        <textarea required="required" id="comment" name="comment"></textarea>
+                        <span>Type your Message...</span>
+                    </div>
+                    <div class="inputBox">
+                        <input type="submit" value="Send">
+                    </div>
+                </form>
+            </div>
+            </form>
+
+        </div>
+    </section>
+</body>
+{% include 'footer.html' %}
+{% endblock %}

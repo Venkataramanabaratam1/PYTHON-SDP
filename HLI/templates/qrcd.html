@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <title>QR</title>
+
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.column{
+margin : 20px
+display: grid;
+  grid-template-columns: min-content 1fr;
+}
+#background-video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+}
+    </style>
+</head>
+<body>
+<center>
+    <br>
+    <div class="column">
+    <img src="{% static 'images/pay.webp' %}" height="100" width="300" style="border-radius: 20px; border: black; border-width: 5px">
+        <br/><br/>
+  <img src="{% static 'images/qr.jpg' %}" height="500" width="500" style="background-color: white; border-radius: 20px; border: black;border-style: dashed; border-width: 5px">
+        </div>
+</center>
+<br>
+<video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
+  <source src="https://assets.codepen.io/6093409/river.mp4" type="video/mp4">
+</video>
+</body>
+{% include 'footer.html' %}
+{% endblock %}

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Bot</title>
+    <!-- <link rel="icon" href="kakshi.jpg"> -->
+    <link rel="stylesheet" href="static/css/chat.css">
+    <link rel="stylesheet" href="static/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.chat-bar-collapsible {
+    position: fixed;
+    bottom: 0;
+    right: 50px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.collapsible {
+    background-color: rgb(82, 151, 255);
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 350px;
+    text-align: left;
+    outline: none;
+    font-size: 18px;
+    border-radius: 10px 10px 0px 0px;
+    border: 3px solid white;
+    border-bottom: none;
+}
+
+.content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+}
+
+.full-chat-block {
+    width: 350px;
+    background: white;
+    text-align: center;
+    overflow: auto;
+    scrollbar-width: none;
+    height: max-content;
+    transition: max-height 0.2s ease-out;
+}
+
+.outer-container {
+    min-height: 500px;
+    bottom: 0%;
+    position: relative;
+}
+
+.chat-container {
+    max-height: 500px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    scroll-behavior: smooth;
+    hyphens: auto;
+}
+
+.chat-container::-webkit-scrollbar {
+    display: none;
+}
+
+.chat-bar-input-block {
+    display: flex;
+    float: left;
+    box-sizing: border-box;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    background-color: rgb(235, 235, 235);
+    border-radius: 10px 10px 0px 0px;
+    padding: 10px 0px 10px 10px;
+}
+
+.chat-bar-icons {
+    display: flex;
+    justify-content: space-evenly;
+    box-sizing: border-box;
+    width: 25%;
+    float: right;
+    font-size: 20px;
+}
+
+#chat-icon:hover {
+    opacity: .7;
+}
+
+/* Chat bubbles */
+
+#userInput {
+    width: 75%;
+}
+
+.input-box {
+    float: left;
+    border: none;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    color: #000;
+    background-color: white;
+    outline: none
+}
+
+.userText {
+    color: white;
+    font-family: Helvetica;
+    font-size: 16px;
+    font-weight: normal;
+    text-align: right;
+    clear: both;
+}
+
+.userText span {
+    line-height: 1.5em;
+    display: inline-block;
+    background: #5ca6fa;
+    padding: 10px;
+    border-radius: 8px;
+    border-bottom-right-radius: 2px;
+    max-width: 80%;
+    margin-right: 10px;
+    animation: floatup .5s forwards
+}
+
+.botText {
+    color: #000;
+    font-family: Helvetica;
+    font-weight: normal;
+    font-size: 16px;
+    text-align: left;
+}
+
+.botText span {
+    line-height: 1.5em;
+    display: inline-block;
+    background: #e0e0e0;
+    padding: 10px;
+    border-radius: 8px;
+    border-bottom-left-radius: 2px;
+    max-width: 80%;
+    margin-left: 10px;
+    animation: floatup .5s forwards
+}
+
+@keyframes floatup {
+    from {
+        transform: translateY(14px);
+        opacity: .0;
+    }
+    to {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .full-chat-block {
+        width: 100%;
+        border-radius: 0px;
+    }
+    .chat-bar-collapsible {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+    }
+    .collapsible {
+        width: 100%;
+        border: 0px;
+        border-top: 3px solid white;
+        border-radius: 0px;
+    }
+}
+html {
+    scroll-behavior: smooth;
+    font-family: Helvetica, sans-serif, Arial;
+}
+
+body {
+    margin: 0 auto;
+    background-color: #222;
+}
+</style>
+</head>
+
+<body>
+    <!-- CHAT BAR BLOCK -->
+    <div class="chat-bar-collapsible">
+        <button id="chat-button" type="button" class="collapsible">Chat with us!
+            <i id="chat-icon" style="color: #fff;" class="fa fa-fw fa-comments-o"></i>
+        </button>
+
+
+<div class="content">
+            <div class="full-chat-block">
+                <!-- Message Container -->
+                <div class="outer-container">
+                    <div class="chat-container">
+                        <!-- Messages -->
+                        <div id="chatbox">
+                            <h5 id="chat-timestamp"></h5>
+                            <p id="botStarterMessage" class="botText"><span>Loading...</span></p>
+                        </div>
+
+                        <!-- User input box -->
+                        <div class="chat-bar-input-block">
+                            <div id="userInput">
+                                <input id="textInput" class="input-box" type="text" name="msg"
+                                    placeholder="Tap 'Enter' to send a message">
+                                <p></p>
+                            </div>
+
+                            <div class="chat-bar-icons">
+                                <i id="chat-icon" style="color: crimson;" class="fa fa-fw fa-heart"
+                                    onclick="heartButton()"></i>
+                                <i id="chat-icon" style="color: #333;" class="fa fa-fw fa-send"
+                                    onclick="sendButton()"></i>
+                            </div>
+                        </div>
+
+                        <div id="chat-bar-bottom">
+                            <p></p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="static/scripts/responses.js"></script>
+<script src="static/scripts/chat.js"></script>
+<script>
+// Collapsible
+var coll = document.getElementsByClassName("collapsible");
+
+for (let i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+
+        var content = this.nextElementSibling;
+
+        if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+        } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+        }
+
+    });
+}
+
+function getTime() {
+    let today = new Date();
+    hours = today.getHours();
+    minutes = today.getMinutes();
+
+    if (hours < 10) {
+        hours = "0" + hours;
+    }
+
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    let time = hours + ":" + minutes;
+    return time;
+}
+
+// Gets the first message
+function firstBotMessage() {
+    let firstMessage = "How's it going?"
+    document.getElementById("botStarterMessage").innerHTML = '<p class="botText"><span>' + firstMessage + '</span></p>';
+
+    let time = getTime();
+
+    $("#chat-timestamp").append(time);
+    document.getElementById("userInput").scrollIntoView(false);
+}
+
+firstBotMessage();
+
+// Retrieves the response
+function getHardResponse(userText) {
+    let botResponse = getBotResponse(userText);
+    let botHtml = '<p class="botText"><span>' + botResponse + '</span></p>';
+    $("#chatbox").append(botHtml);
+
+    document.getElementById("chat-bar-bottom").scrollIntoView(true);
+}
+
+//Gets the text text from the input box and processes it
+function getResponse() {
+    let userText = $("#textInput").val();
+
+    if (userText == "") {
+        userText = "I love Code Palace!";
+    }
+
+    let userHtml = '<p class="userText"><span>' + userText + '</span></p>';
+
+    $("#textInput").val("");
+    $("#chatbox").append(userHtml);
+    document.getElementById("chat-bar-bottom").scrollIntoView(true);
+
+    setTimeout(() => {
+        getHardResponse(userText);
+    }, 1000)
+
+}
+
+// Handles sending text via button clicks
+function buttonSendText(sampleText) {
+    let userHtml = '<p class="userText"><span>' + sampleText + '</span></p>';
+
+    $("#textInput").val("");
+    $("#chatbox").append(userHtml);
+    document.getElementById("chat-bar-bottom").scrollIntoView(true);
+
+//Uncomment this if you want the bot to respond to this buttonSendText event
+    // setTimeout(() => {
+    //     getHardResponse(sampleText);
+    // }, 1000)
+}
+
+function sendButton() {
+    getResponse();
+}
+
+function heartButton() {
+    buttonSendText("Heart clicked!")
+}
+
+// Press enter to send a message
+$("#textInput").keypress(function (e) {
+    if (e.which == 13) {
+        getResponse();
+    }
+});
+function getBotResponse(input) {
+    //rock paper scissors
+    if (input == "rock") {
+        return "paper";
+    } else if (input == "paper") {
+        return "scissors";
+    } else if (input == "scissors") {
+        return "rock";
+    }
+
+    // Simple responses
+    if (input == "hello") {
+        return "Hello there!";
+    } else if (input == "goodbye") {
+        return "Talk to you later!";
+    }
+    else if (input == "policies") {
+        return "Here are the total policy plans : <br>1. Child Savings Policy<br>2. Fixed Maturity Policy<br>3. Health Insurance Policy <br> 4. Term Life Insurance<br>5. Investment Plans<br>6. Pet Insurance Policy<br>7. Family Insurance Policy<br>8. Retirement Plans<br>9. Annuity Plans <br>10. Car Insurance Plan<br>11. Bike Insurance Plan<br>12. Travel Insurance Policy<br><br> Please enter your age";
+    }
+    else if(input>=2 && input<=18){
+        return "Here are the Plans that you may be searching for : <br><a href='https://www.youtube.com/' target=`_blank`>1. Child Savings Policy </a><br>2. Fixed Maturity Policy<br>3. Health Insurance Policy";
+    }
+    else if(input>=19 && input<=36){
+        return "Here are the Plans that you may be searching for : <br>1. Term Life Insurance<br>2. Investment Plans<br>3. Pet Insurance Policy";
+    }
+    else if(input>=37 && input<=58){
+        return "Here are the Plans that you may be searching for : <br>1. Family Insurance Policy<br>2. Retirement Plans<br>3. Annuity Plans";
+    }
+    else if(input == "vechicle insurance"){
+        return "Here are the Plans that you may be searching for : <br>1. Car Insurance Plan<br>2. Bike Insurance Plan<br>3. Travel Insurance Policy";
+    }
+    else if(input == "term life insurance"){
+    return "Term life insurance is a type of life insurance policy that provides coverage for a specific period of time, typically 10, 20, or 30 years. If the insured person passes away during the term of the policy, their beneficiaries will receive a death benefit payout.";
+    }
+    else if(input == "health insurance"){
+    return "Health insurance is a type of insurance that covers the cost of medical expenses, including hospital stays, doctor visits, prescription drugs, and other medical services. Health insurance policies can be purchased by individuals or provided by employers as part of an employee benefits package.";
+    }
+    else if(input == "investment plans"){
+    return "Investment plans are financial strategies designed to help individuals grow their wealth over time through various investment vehicles such as stocks, bonds, mutual funds, exchange-traded funds (ETFs), real estate, and more. The purpose of an investment plan is to help individuals achieve their financial goals, such as saving for retirement, purchasing a home, or funding a child's education.";
+    }
+    else if(input == "child savings policy"){
+    return "A child savings policy is a type of investment plan that allows parents or guardians to save money for their child's future financial needs, such as education expenses or a down payment on a home. Child savings policies can also provide financial protection in the event of the parent's death or disability, ensuring that the child is provided for.";
+    }
+    else if(input == "family insurance policy"){
+    return "A family insurance policy is a type of insurance that provides coverage for a family's medical, dental, and vision needs, as well as other types of insurance such as life insurance and disability insurance. Family insurance policies are designed to provide comprehensive coverage for families, typically including a spouse and children.";
+    }
+    else if(input == "retirement plans"){
+
+return "Retirement plans are financial strategies designed to help individuals save and invest money in order to achieve financial security during retirement. There are many types of retirement plans, each with their own set of features and benefits.";
+    }
+    else if(input == "annuity plans"){
+    return "An annuity is a financial product that provides a guaranteed income stream in retirement in exchange for a lump sum or periodic payments. An annuity plan can be a useful tool for retirement planning and can help individuals achieve their financial goals.";
+    }
+    else if(input == "bike insurance plan"){
+    return "Bike insurance is a type of insurance that provides financial protection to the owner of a motorcycle or scooter against damages or losses caused by accidents, theft, or natural disasters. ";
+    }
+    else if(input == "car insurance plan"){
+    return "When choosing a car insurance plan, it is important to consider your individual needs and budget. Factors such as your driving record, the age and value of your car, and your location may affect the type of coverage you need and the premium you will pay. It is also recommended to shop around and compare quotes from multiple insurers before making a decision.";
+    }
+    else if(input == "pet insurance plan"){
+    return "Pet insurance is a type of insurance policy that provides financial protection against the cost of unexpected veterinary bills. Pet insurance plans are typically designed to cover accidents and illnesses, as well as routine care and wellness services.";
+    }
+    else if(input == "fixed maturity policy"){
+    return "A fixed maturity policy is a type of investment product that is designed to provide a fixed return over a fixed period of time. It is similar to a fixed deposit, in that the investor agrees to invest a certain amount of money for a specified period of time, and in return, receives a fixed rate of interest on their investment.";
+    }
+    else if(input == "travel insurance plan"){
+    return "Travel insurance is a type of insurance policy that provides financial protection for unexpected events that may occur during travel, both domestically and internationally. When choosing a travel insurance policy, it is important to carefully review the coverage provided, as well as any exclusions and limitations. It is also recommended to compare quotes from multiple insurers to find the best coverage at a reasonable price. ";
+    }
+    else {
+        return "Try asking something else!";
+    }
+}
+</script>
+</html>

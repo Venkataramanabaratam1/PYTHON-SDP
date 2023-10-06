@@ -1,0 +1,292 @@
+{% extends 'base.html' %}
+
+{% block title %}POLICIES{% endblock %}
+
+{% block body %}
+
+<div  align="center">
+<marquee style="color: black;background-color:slateblue; font-family: Times New Roman; font-size: 40px; font-weight: bold;">Health and Life Insurance Policies</marquee>
+</div>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cardio</title>
+</head>
+
+<body>
+    <style>
+        /* body{
+            margin: 0;
+            box-sizing: border-box;
+        } */
+        .main {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .cardio {
+            position: relative;
+            height: 250px;
+            width: 350px;
+            background-color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0px 0px 4px rgba(45, 45, 45, 0.758);
+            z-index: 1;
+            box-sizing: border-box;
+            margin: 8px;
+            margin-right: 15px;
+        }
+
+        .cardio img {
+            height: 75%;
+            width: 100%;
+
+            border-radius: 15px 15px 0px 0px;
+            z-index: -1;
+        }
+
+        .inside {
+            position: absolute;
+            inset: 0;
+            height: 75%;
+            box-sizing: border-box;
+            z-index: 1;
+        }
+
+        .bootstrap-btn {
+            display: inline-block;
+            font-weight: 400;
+            color: #212529;
+            text-align: center;
+            border: 1px solid transparent;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: .25rem;
+            color: #fff;
+            background-color: #007bff;
+
+        }
+
+        /* .bootstrap-btn:focus, .bootstrap-btn.focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+} */
+
+        .bootstrap-btn:hover {
+            background-color: #0069d9;
+
+        }
+
+        .bootstrap-btn:active {
+            background-color: #0048d9;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.345);
+
+        }
+
+        .details {
+            position: absolute;
+             overflow: scroll;
+             overflow-x: hidden;
+            height: 100%;
+            bottom: 0;
+            opacity: 0;
+            color: azure;
+            transition: .5s ease-in;
+            background-color: rgba(20, 20, 20, 0.578);
+            border-radius: 15px 15px 0px 0px;
+        }
+
+        .details p {
+            text-transform: uppercase;
+            position: relative;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            top: 40px;
+            margin: 5px;
+            letter-spacing: 1px;
+
+        }
+
+        .boost {
+            box-sizing: border-box;
+            position: absolute;
+            bottom: 0px;
+            height: 25%;
+            width: 100%;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            text-transform: uppercase;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            flex-direction: row;
+            border-radius: 0px 0px 15px 15px;
+            background-color: rgb(252, 252, 252);
+        }
+
+        .inside:hover .details {
+            opacity: 1;
+        }
+    </style>
+    <div class="main">
+        <div class="cardio">
+            <img src="https://www.paybima.com/blog/wp-content/uploads/2021/10/02_Term-Insurance.jpg" alt="Network Error">
+            <div class="boost">
+                <h5>Term-Life Insurance </h5>
+                <a href="{% url 'termlifeinsurance' %}"> <button class="bootstrap-btn" > Access </button> </a>
+            </div>
+            <div class="inside">
+                <div class="details">
+                    <p> Term life insurance is a type of life insurance policy that provides coverage for a specified period of time,such as 10,20,or 30 years.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cardio">
+            <img src="https://th.bing.com/th/id/OIP.zd5bpFRR3UBMU8OEz-SAxwHaE8?w=256&h=180&c=7&r=0&o=5&dpr=1.4&pid=1.7" alt="">
+            <div class="boost">
+                <h5>Health Insurance Policy</h5>
+                <a href="{% url 'healthinsurancepolicy' %}"> <button class="bootstrap-btn" > Access </button> </a>
+            </div>
+            <div class="inside">
+                <div class="details">
+                    <p> When an individual purchases a health insurance policy, they pay a premium to the insurance company in exchange for coverage of medical expenses. Including doctor visits, hospital stays, prescription medications, and other medical services.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cardio">
+            <img src="https://thumbs.dreamstime.com/b/financial-investment-management-concept-finance-planning-logo-business-start-up-money-pension-plan-retire-savings-156371029.jpg" alt="">
+            <div class="boost">
+                <h5>Investment plans</h5>
+               <a href="{% url 'investmentplans' %}"> <button class="bootstrap-btn" > Access </button> </a>
+            </div>
+            <div class="inside">
+                <div class="details">
+                    <p>Investment plans refer to various financial instruments that are designed to help individuals grow their wealth by investing their money.</p>
+                </div>
+            </div>
+        </div>
+        <div class="cardio">
+            <img src="https://s3.ap-south-1.amazonaws.com/img1.creditmantri.com/community/article/secure-your-childs-future-with-a-child-insurance-plan.jpg" alt="">
+            <div class="boost">
+                <h5>Child Savings</h5>
+               <a href="{% url 'childsavings' %}"> <button class="bootstrap-btn" > Access </button> </a>
+            </div>
+            <div class="inside">
+                <div class="details">
+                    <p>A child saving policy is a type of investment plan that is designed to help parents or guardians save for their child's future financial needs.</p>
+                </div>
+            </div>
+        </div>
+        <div class="cardio">
+            <img src="https://cms-img.coverfox.com/life-insurance-while-planning-retirement.jpg" alt="">
+            <div class="boost">
+                <h3>Retirement Plans</h3>
+                <a href="{% url 'retirementplans' %}"> <button class="bootstrap-btn" > Access </button> </a>
+            </div>
+            <div class="inside">
+                <div class="details">
+                    <p>A retirement policy is a type of investment plan that is designed to help individuals save for retirement. </p>
+                </div>
+            </div>
+        </div>
+        <div class="cardio">
+            <img src="https://th.bing.com/th/id/OIP.p4yuW7TtIwbhsf2W1jOqMAHaE8?pid=ImgDet&rs=1" alt="">
+            <div class="boost">
+                <h5>Family Insurance Plans</h5>
+               <a href="{% url 'familyinsuranceplans' %}"> <button class="bootstrap-btn" > Access </button> </a>
+            </div>
+            <div class="inside">
+                <div class="details">
+                    <p>A family insurance policy is a type of insurance policy that provides coverage to all members of a family under single policy.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cardio">
+            <img src="https://www.policybachat.com/ArticlesImages/1200.jpg" alt="">
+            <div class="boost">
+                <h5>Annuity Plans</h5>
+                <a href="{% url 'annuityplans' %}"> <button class="bootstrap-btn" > Access </button> </a>
+            </div>
+            <div class="inside">
+                <div class="details">
+                    <p>Annuity plans are investment products that are designed to provide a guaranteed income stream in retirement.</p>
+                </div>
+            </div>
+        </div>
+        <div class="cardio">
+            <img src="https://cms-img.coverfox.com/personalize-two-wheeler-insurance-policy.webp" alt="">
+            <div class="boost">
+                <h5>Bike Insurance Plans</h5>
+              <a href="{% url 'bikeinsuranceplans' %}"> <button class="bootstrap-btn" > Access </button> </a>
+            </div>
+            <div class="inside">
+                <div class="details">
+                    <p>A bike insurance plan is a type of insurance policy that provides coverage for a motorcycle or other two-wheeled vehicle.</p>
+                </div>
+            </div>
+        </div>
+        <div class="cardio">
+            <img src="https://static.toiimg.com/thumb/msid-87297456,width-1280,height-720,resizemode-4/.jpg" alt="">
+            <div class="boost">
+                <h5>Car Insurance Plan</h5>
+                <a href="{% url 'carinsuranceplans' %}"> <button class="bootstrap-btn" > Access </button> </a>
+            </div>
+            <div class="inside">
+                <div class="details">
+                    <p>A car insurance plan is a type of insurance policy that provides coverage for a motor vehicle,such as a car or truck.</p>
+                </div>
+            </div>
+        </div>
+        <div class="cardio">
+            <img src="https://img.money.com/2020/09/Money-Pets-Final-red2.jpg" alt="">
+            <div class="boost">
+                <h5>Pet Insurance Policy</h5>
+                <a href="{% url 'petinsuranceplans' %}"> <button class="bootstrap-btn" > Access </button> </a>
+            </div>
+            <div class="inside">
+                <div class="details">
+                    <p>Pet insurance is a type of insurance policy that provides coverage for veterinary expenses in case of injury or illness.</p>
+                </div>
+            </div>
+        </div>
+        <div class="cardio">
+            <img src="https://png.pngtree.com/template/20190316/ourmid/pngtree-insurance-logo-vector-image_80261.jpg" alt="">
+            <div class="boost">
+                <h5>Fixed Maturity Policy</h5>
+               <a href="{% url 'fixedmaturitypolicy' %}"> <button class="bootstrap-btn" > Access </button> </a>
+            </div>
+            <div class="inside">
+                <div class="details">
+                    <p>A fixed maturity policy is a type of investment plan in which the investor makes a lump-sum payment upfront and receives a fixed return on their amount.</p>
+                </div>
+            </div>
+        </div>
+        <div class="cardio">
+            <img src="https://img.freepik.com/premium-vector/travel-insurance-flat-style-isometric-vector-illustration-health-insurance-concept_100456-7487.jpg" alt="">
+            <div class="boost">
+                <h5>Travel Insurance Policy</h5>
+               <a href="{% url 'travelinsurancepolicy' %}"> <button class="bootstrap-btn" > Access </button> </a>
+            </div>
+            <div class="inside">
+                <div class="details">
+                    <p>Travel insurance is a type of insurance policy that provides coverage for unexpected events that may occur during a trip,such as medical emergency.Travel insurance is a type of insurance policy that provides coverage for unexpected events that may occur during a trip,such as medical emergencies,lost or stolen baggage,and other circumstances.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+{% include 'footer.html' %}
+{% endblock %}

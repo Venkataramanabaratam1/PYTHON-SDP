@@ -1,0 +1,129 @@
+<head>
+  <meta charset ="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet">
+ </head>
+    <style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+@keyframes fade{
+  from{
+    opacity:0.4;
+  }
+  to{
+    opacity:1;
+  }
+}
+
+body{
+  background:#eeeee;
+}
+
+#slider{
+  margin:0 auto;
+  width:80%;
+  overflow:hidden;
+}
+
+.slides{
+  overflow:hidden;
+  animation-name:fade;
+  animation-duration:1s;
+  display:none;
+}
+
+
+
+#dot{
+  margin:0 auto;
+  text-align:center;
+}
+.dot{
+  display:inline-block;
+  border-radius:50%;
+  background:#d3d3d3;
+  padding:8px;
+  margin:10px 5px;
+}
+
+.active{
+  background:black;
+}
+
+@media (max-width:567px){
+  #slider{
+    width:100%;
+
+  }
+}
+
+#heading{
+  display:block;
+  text-align:center;
+  font-size:2em;
+  margin:10px 0px;
+  font-family: Times New Roman; font-size: 50px; font-weight: bold;"
+  color:Black;
+}
+</style>
+{% block body %}
+        <span id="heading">Health and Life Insuarance System</span>
+<div id="slider">
+<div class="slides">
+  <img src="https://media.istockphoto.com/id/475702616/photo/life-insurance-paper-family.jpg?s=612x612&w=0&k=20&c=Q321odwBa5M0CiauxFmlNEMRV2WzMOBhdABSi69Tsec=" width="1200" height="500" />
+ </div>
+
+  <div class="slides">
+  <img src="https://www.starhealth.in/blog/wp-content/uploads/2023/02/Health-Insurance-for-different-phases-of-life-copy.jpg" width="1200" height="500" />
+</div>
+
+  <div class="slides">
+  <img src="https://riskman1.com/wp-content/uploads/2021/02/Difference-Between-Term-Insurance-Life-Insurance-Health-Insurance.jpeg" width="1200" height="500" />
+</div>
+
+   <div class="slides">
+  <img src="https://www.rentcafe.com/blog/wp-content/uploads/sites/5/2020/05/health-insurance-and-life-insurance-featured.png?w=890-900x300.jpg" width="1200" height="500" />
+</div>
+
+<div class="slides">
+  <img src="https://www.canarahsbclife.com/content/dam/choice/blog-inner/images/reasons-to-buy-a-life-insurance-plan.jpg" width="1200" height="500" />
+</div>
+
+  <div id="dot"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+ </div>
+<script>
+    var index = 0;
+var slides = document.querySelectorAll(".slides");
+var dot = document.querySelectorAll(".dot");
+
+function changeSlide(){
+
+  if(index<0){
+    index = slides.length-1;
+  }
+
+  if(index>slides.length-1){
+    index = 0;
+  }
+
+  for(let i=0;i<slides.length;i++){
+    slides[i].style.display = "none";
+    dot[i].classList.remove("active");
+  }
+
+  slides[index].style.display= "block";
+  dot[index].classList.add("active");
+
+  index++;
+
+  setTimeout(changeSlide,2000);
+
+}
+
+changeSlide();
+</script>
+{% endblock %}

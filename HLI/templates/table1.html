@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    body {
+  font-size: 16px;
+  font-family: Helvetica, sans-serif;
+}
+.flexbox .no,
+.no-flexbox .yes {display: none}
+.container {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+a {
+  color: #E66A20;
+  word-wrap: break-word;
+}
+a:visited {
+  color: #F00;
+}
+
+header,
+footer {text-align: center;}
+.container {
+  width: 75%;
+  margin: 1em auto;
+}
+.cell {
+  overflow: hidden;
+}
+.container .row .cell.header {
+  color: #FFF;
+  background-color: #222;
+}
+.row {
+  background: green;
+}
+.row.alt {
+  background: #DEDEDE;
+}
+.flexbox .container {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+}
+.boxshadow .container {
+  box-shadow: 1px 1px 10px 1px #777;
+}
+.flexbox .container .row {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+}
+.flexbox .row .cell {
+  flex: 1;
+  width: 25%;
+}
+.row .cell {
+  padding: 1em;
+  border: 1px solid #222;
+}
+@media all and (max-width: 43.125em) {
+
+  .header {display: none;}
+  .flexbox .row .cell:before {
+    content: attr(title);
+    width: 75px;
+    display: block;
+    background: #222;
+    color: #fff;
+    padding: .25em .5em;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .flexbox .container .row {
+    flex-direction: column;
+  }
+  .flexbox .row .cell {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+    padding: 3em 0 1em 1em;
+  }
+
+}
+
+/* Fallbacks */
+
+.no-flexbox .container {
+   display: table;
+}
+.no-flexbox .row {
+  display: table-row;
+}
+.no-flexbox .cell {
+  display: table-cell;
+}
+
+  </style>
+</head>
+<body>
+<script src="//ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.7.2.js"></script>
+<section>
+  <header><h1>Details of Insurance Policies</h1>
+    <div class="yes">Hooray! You can get your supportive plans !</div>
+
+    </header>
+  <div class="container">
+      <div class="row header">
+        <div class="cell header">Insurance Name</div>
+        <div class="cell header">Plan Name</div>
+        <div class="cell header">Sum Assured <br> (cover for Building +contents) <br> (in Rs) </div>
+        <div class="cell header">Basic Premium <br> (in Rs)</div>
+          <div class="cell header">Premium inclusive of Burglary cover for Rs 10 Lakh</div>
+          <div class="cell header">Premium inclusive of Terrorism + Burglary Cover</div>
+          <div class="cell header">Premium inclusive of Burglary+Terrorism+Jewellery Cover(Rs 5Lakh)</div>
+          <div class="cell header">Premium inclusive of Burglary+Terrorism+Jewellery Cover+Third party Liability(max Rs 5Lakh)</div>
+          <div class="cell header">Supportive Links</div>
+      </div>
+      <div class="row">
+        <div class="cell" title="Name"><span>HDFC Ergo</span></div>
+        <div class="cell" title="Friend"><span>Home Shield</span></div>
+        <div class="cell" title="Website"><span><a>Rs 40 Lakh+Rs 10 L</a></span></div>
+        <div class="cell" title="Category"><span>7,920</span></div>
+          <div class="cell" title="Name"><span>7,920</span></div>
+        <div class="cell" title="Friend"><span>8451</span></div>
+        <div class="cell" title="Website"><span><a>9,962(max Rs 2 Lakh for jewellery)</a></span></div>
+          <div class="cell" title="Friend"><span>10,198</span></div>
+          <div class="cell" title="Friend"><span><a href="AllSQLcommands.pdf" download>Home Shield</a></span></div>
+      </div>
+      <div class="alt row">
+        <div class="cell" title="Name"><span>The New India Assurance</span></div>
+        <div class="cell" title="Friend"><span>Griha Suvidha</span></div>
+        <div class="cell" title="Website"><span><a>Rs 40 Lakh+Rs 10 L</a></span></div>
+        <div class="cell" title="Category"><span>8,375</span></div>
+          <div class="cell" title="Name"><span>8,375</span></div>
+        <div class="cell" title="Friend"><span>8,375</span></div>
+        <div class="cell" title="Website"><span><a>8,375(max Rs 4 Lakh for jewellery)</a></span></div>
+          <div class="cell" title="Friend"><span>NA</span></div>
+           <div class="cell" title="Friend"><span><a href="AllSQLcommands.pdf" download>Griha Suvidha</a></span></div>
+      </div><div class="row">
+        <div class="cell" title="Name"><span>Royal Sundaram</span></div>
+        <div class="cell" title="Friend"><span>Gruha Suraksha</span></div>
+        <div class="cell" title="Website"><span><a>Rs 40 Lakh+Rs 10 L</a></span></div>
+        <div class="cell" title="Category"><span>8,072</span></div>
+          <div class="cell" title="Name"><span>8,072</span></div>
+        <div class="cell" title="Friend"><span>8218</span></div>
+        <div class="cell" title="Website"><span><a>8,218(max Rs 2 Lakh for jewellery)</a></span></div>
+          <div class="cell" title="Friend"><span>8,525</span></div>
+       <div class="cell" title="Friend"><span><a href="AllSQLcommands.pdf" download>Gruha Suraksha</a></span></div>
+      </div>
+      <div class="alt row">
+        <div class="cell" title="Name"><span>SBI General</span></div>
+        <div class="cell" title="Friend"><span>Long Term Home Insuarance</span></div>
+        <div class="cell" title="Website"><span><a>Rs 40 Lakh</a></span></div>
+        <div class="cell" title="Category"><span>8,284 for 5 years</span></div>
+          <div class="cell" title="Name"><span>NA</span></div>
+        <div class="cell" title="Friend"><span>NA</span></div>
+        <div class="cell" title="Website"><span><a>NA</a></span></div>
+          <div class="cell" title="Friend"><span>Na</span></div>
+           <div class="cell" title="Friend"><span><a href="AllSQLcommands.pdf" download>Long Term Insurance</a></span></div>
+      </div>
+      <div class="row">
+        <div class="cell" title="Name"><span>Oriental General</span></div>
+        <div class="cell" title="Friend"><span>House holder insurance</span></div>
+        <div class="cell" title="Website"><span><a>Rs 40 Lakh+Rs 10 L</a></span></div>
+        <div class="cell" title="Category"><span>2,600</span></div>
+          <div class="cell" title="Name"><span>2,600</span></div>
+        <div class="cell" title="Friend"><span>NA</span></div>
+        <div class="cell" title="Website"><span><a>4,461(max Rs 2 Lakh for jewellery)</a></span></div>
+          <div class="cell" title="Friend"><span>4,471(Max for Public liability Rs25k)</span></div>
+           <div class="cell" title="Friend"><span><a href="AllSQLcommands.pdf"> House holder insurance</a></span></div>
+      </div>
+  </div>
+<!--  <footer>Created by <a href="https://publuu.com/flip-book/108523/291148" target="_blank">Ian Svoboda</a></footer>-->
+</section>
+</body>
+</html>
+
+{% endblock %}
