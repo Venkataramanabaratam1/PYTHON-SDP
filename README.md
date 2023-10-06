@@ -9,7 +9,7 @@ Technologies Incorporated in this project :
 # Our Team
 ### [Venkataramana Baratam](https://github.com/venkataramanabaratam1)
 ### [Vachaspathi Gnaneswar Garlapati](https://github.com/vachaspathi6)
-### [Rohith Venkat Sai Kunta](https://github.com/)
+### [Rohith Venkat Sai Kunta](https://github.com/rohith32432)
 
 ## Deployment Link : [Clickhere](http://venky2852.pythonanywhere.com/)
 ## http://venky2852.pythonanywhere.com/
